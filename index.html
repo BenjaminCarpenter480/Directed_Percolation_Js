@@ -1,28 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Directed Percolation testing</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
 
     <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            background-color:rgb(1, 1, 1);
-            display: grid;
-            place-items: center;
-            min-height: auto;
-        }
-        #canvas-container {
-            border: 5px solid black;
-        }
-
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: purple;
+        display: grid;
+        place-items: center;
+        min-height: auto;
+      }
+      #canvas-container {
+        border: 5px solid purple;
+      }
     </style>
-</head>
-    <body>
-        <div id="canvas-container"></div>
-        <script src="directedPercolation.js"></script>
-    </body>
+
+    <link rel="stylesheet" href="var-box-style.css" />
+  </head>
+  <body>
+    <div id="canvas-container"></div>
+    <script src="directedPercolation.js"></script>
+    <script src="var-box.js"></script>
+
+    <div class="var-box">
+      <div class="box-header">
+        <span> Slider Controls</span>
+        <span class="toggle-icon">-</span>
+      </div>
+
+      <div class="box-content">
+        <div class="slider-group">
+          <label for="prob_start">Probability Start: </label>
+          <input
+            type="range"
+            id="prob_start"
+            name="prob_start"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.9"
+            oninput="document.getElementById('prob_start_value').innerText = this.value; prob_start = parseFloat(this.value);"
+          />
+          <span id="prob_start_value">0.9</span>
+        </div>
+        <div class="slider-group">
+          <label for="prob_survive">Probability Survive: </label>
+          <input
+            type="range"
+            id="prob_survive"
+            name="prob_survive"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.7"
+            oninput="document.getElementById('prob_survive_value').innerText = this.value; prob_survive = parseFloat(this.value);"
+          />
+          <span id="prob_survive_value">0.7</span>
+        </div>
+        <div class="slider-group">
+          <label for="prob_spread">Probability Spread: </label>
+          <input
+            type="range"
+            id="prob_spread"
+            name="prob_spread"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.61"
+            oninput="document.getElementById('prob_spread_value').innerText = this.value; prob_spread = parseFloat(this.value);"
+          />
+          <span id="prob_spread_value">0.61</span>
+      </div>
+    </div>
+  </body>
 </html>

@@ -2,9 +2,9 @@ let img; // This will hold our off-screen image buffer
 let y = 0; // This will track the current row
 let width;
 let height
-const prob_start = 0.9;
-const prob_survive = 0.7;
-const prob_spread = 0.61;
+let prob_start = 0.9;
+let prob_survive = 0.7;
+let prob_spread = 0.61;
 let newRow = [];
 let alive = 0;
 let dead = 1;

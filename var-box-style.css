@@ -1,0 +1,75 @@
+* {
+  /* Use border-boxes for all elements!*/
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  padding: 20px;
+}
+
+.var-box {
+  width: 100%;
+  height: auto;
+  border: 1px transparent orange;
+  border-radius: 30px;
+  background: orange;
+  overflow: hidden;
+  padding: 3%;
+  box-shadow: 0 40px 10px rgba(0, 0, 0, 0.2);
+
+  position: fixed;
+  bottom: 10%;
+  left: auto;
+  z-index: 1000; /* Keep on top of other elements */
+}
+
+.box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  background: darkorange;
+  cursor: pointer; /* Indicate clickable */
+  user-select: none; /* Prevent text select on click */
+}
+
+.box-header span {
+  font-weight: bold;
+  color: white;
+}
+
+.toggle-icon {
+  font-size: 1.2%;
+  font-weight: bold;
+  color: white;
+}
+
+.box-content {
+  padding: 2%;
+  max-height: auto;
+
+  transition: max-height 0.3s ease-in-out, padding-top 0.3s ease-in-out,
+    padding-bottom 0.3s ease-in-out;
+}
+
+.var-box.collapsed .box-content {
+  /* When collapsed, just make so small it is invisible */
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.slider-group {
+  margin-bottom: 1%;
+}
+.slider-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5%;
+}
+
+.slider-group input[type="range"] {
+  width: 75%;
+}
