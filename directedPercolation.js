@@ -6,11 +6,12 @@ const prob_start = 0.9;
 const prob_survive = 0.7;
 const prob_spread = 0.61;
 let newRow = [];
-let alive = 255;
-let dead = 0;
+let alive = 0;
+let dead = 1;
 let page_size_factor = 5; // How many times the height of the window should the canvas be
 
 function windowResized() {
+    y = 0;
     height = windowHeight*page_size_factor;
     width = windowWidth;
     resizeCanvas(windowWidth, windowHeight*page_size_factor);
@@ -46,11 +47,12 @@ function get_next_row(currentRow) {
                 _next_row.push(alive);
                 // If cell survives, it can spread to neighbors
                 if (x > 0) {
-                    _next_row[x - 1] = random(1) < prob_spread ? alive : _next_row[x - 1];
+                    _next_row[x - 1] = random(1) < prob_spread ? alive : currentRow[x - 1];
                 }
                 if (x < currentRow.length - 1) {
-                    _next_row[x + 1] = random(1) < prob_spread ? alive : _next_row[x + 1];
+                    _next_row[x + 1] = random(1) < prob_spread ? alive : currentRow[x + 1];
                     }
+                    // TODO This needs fixing as currentRow[x+1] will be tested against Spread_prob*survive_prob on same timestep, presumably a just spread must survive? 
             }
 
         } else {
@@ -66,9 +68,9 @@ function gen_first_row() {
     let firstRow = [];
     for (let x = 0; x < width; x++) {
         if (random(1) < prob_start) {
-            firstRow.push(255); // alive
+            firstRow.push(alive); // alive
         } else {
-            firstRow.push(0); // dead
+            firstRow.push(dead); // dead
         }
     }
     return firstRow;
@@ -93,9 +95,9 @@ function draw() {
     let index = (y % height * width + x) * 4;
 
     // Set R, G, B, and Alpha channels for the off-screen image
-    img.pixels[index + 0] = val;
-    img.pixels[index + 1] = val;
-    img.pixels[index + 2] = val;
+    img.pixels[index + 0] = val*128;
+    img.pixels[index + 1] = val*0;
+    img.pixels[index + 2] = val*128;
     img.pixels[index + 3] = 255;
   }
 
