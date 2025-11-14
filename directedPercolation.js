@@ -95,9 +95,9 @@ function draw() {
     let index = (y % height * width + x) * 4;
 
     // Set R, G, B, and Alpha channels for the off-screen image
-    img.pixels[index + 0] = val*128;
-    img.pixels[index + 1] = val*0;
-    img.pixels[index + 2] = val*128;
+    img.pixels[index + 0] = val*255;
+    img.pixels[index + 1] = val*255;
+    img.pixels[index + 2] = val*255;
     img.pixels[index + 3] = 255;
   }
 
