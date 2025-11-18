@@ -2,9 +2,9 @@ let img; // This will hold our off-screen image buffer
 let y = 0; // This will track the current row
 let width;
 let height
-let prob_start = 0.9;
-let prob_survive = 0.7;
-let prob_spread = 0.61;
+let prob_start = 0.1;
+let prob_survive = 0.4;
+let prob_spread = 0.5;
 let newRow = [];
 let alive = 0;
 let dead = 1;
@@ -44,26 +44,25 @@ function setup() {
 function get_next_row(currentRow) {
     let _next_row = [];
     for (let x = 0; x < currentRow.length; x++) {
-        if (currentRow[x] == alive) {
+        if (currentRow[x] == alive && (random(1) < prob_survive)) {
             // Cell is alive, it stays alive if random < prob_survive
-            if (random(1) < prob_survive) {
                 _next_row.push(alive);
-                // If cell survives, it can spread to neighbors
-                if (x > 0) {
-                    _next_row[x - 1] = random(1) < prob_spread ? alive : currentRow[x - 1];
-                }
-                if (x < currentRow.length - 1) {
-                    _next_row[x + 1] = random(1) < prob_spread ? alive : currentRow[x + 1];
-                    }
-                    // TODO This needs fixing as currentRow[x+1] will be tested against Spread_prob*survive_prob on same timestep, presumably a just spread must survive? 
+            } else {
+                _next_row.push(dead);
             }
-
-        } else {
-            _next_row.push(dead);
-            }
-
-
     }
+
+    for (let x = 0; x < currentRow.length; x++) {
+        if (currentRow[x] == alive) {
+            // If cell ALIVE, it can spread to neighbors
+            if (x > 0) {
+                _next_row[x - 1] = random(1) < prob_spread ? alive : _next_row[x - 1];
+            }
+            if (x < currentRow.length - 1) {
+                _next_row[x + 1] = random(1) < prob_spread ? alive : _next_row[x + 1];
+                }
+            }
+        }
     return _next_row;
 }
 
