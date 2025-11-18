@@ -19,6 +19,15 @@ function windowResized() {
 }
 
 
+function resetSimulation() {
+    y = 0;
+    newRow = gen_first_row();
+    createCanvas(windowWidth, windowHeight*page_size_factor);
+    img = createImage(width, height*page_size_factor);
+    img.loadPixels();
+    console.log("Simulation reset.");
+    loop(); // Restart the draw loop
+}
 
 function setup() {
     height = windowHeight*page_size_factor;
