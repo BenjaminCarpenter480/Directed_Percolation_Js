@@ -34,6 +34,9 @@ function setup() {
 
     // 3. Initialize the first row
     newRow = gen_first_row();
+    document.getElementById('prob_start_value').innerText = prob_start; 
+    document.getElementById('prob_survive_value').innerText = prob_survive; 
+    document.getElementById('prob_spread_value').innerText = prob_spread;
 
 }
 
